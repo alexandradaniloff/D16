@@ -45,7 +45,11 @@ news
 
                <td>{{ new.title|censor }}&emsp;</td>
 
-               <td>{{new.categories}} </td>
+               <td>
+                   {% for category in new.categories.all %}
+                       <a href="{% url 'category_list' category.id %}">{{category}}</a>
+                       {% endfor %}
+               </td>
 
                <td>{{ new.date_create|date:'d M Y, H m'|censor}}&emsp;</td>
                <td>{{ new.content|truncatechars:20|censor }}&emsp;</td>
