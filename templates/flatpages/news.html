@@ -62,11 +62,19 @@ news
            {% endfor %}
 
        </table>
+
     {% else %}
        <!-- Если новостей нет, говорим, что новостей нет ;) -->
        <h2>Новостей нет!</h2>
 
     {% endif %}
+
+
+    <button> <a href="{% url 'news_create' %}"> Создать новость/статью </a> </button>
+
+
+    <button> <a href="/"> Выйти </a></button>
+
     {% if page_obj.has_previous %}
        {# Для каждой ссылки пагинации указываем обработку через новый тег #}
        <a href="?{% url_replace page=1 %}">1</a>

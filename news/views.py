@@ -130,6 +130,7 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     # и новый шаблон, в котором используется форма.
     template_name = 'flatpages/news_create.html'
 
+
     def form_valid(self, form):
         Post = form.save(commit=False)
         Post.post_type = 'NE'
@@ -137,8 +138,9 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
 class NewsUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required = ('news.change_post',)
+    form_class = PostForm
     model = Post
-    fields = ['author',  'title', 'content']
+    #fields = ['author',  'title', 'content']
     template_name = 'flatpages/news_edit.html'
 
 
@@ -206,7 +208,7 @@ class CategoryListView(ListView):
     def get_queryset(self):
         self.category = get_object_or_404(Category,
                                           id=self.kwargs['pk']
-                                          )
+                                         )
         queryset = Post.objects.filter(categories=self.category).order_by('-date_create')
         return queryset
 
@@ -224,3 +226,5 @@ def subscribe(request, pk):
 
     message = 'Вы успешно подписались на рассылку новостей категории'
     return  render(request, 'flatpages/subscribe.html', {'category': category, 'message': message})
+
+
