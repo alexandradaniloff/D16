@@ -5,13 +5,13 @@ from django.core.mail import EmailMultiAlternatives
 
 
 from django.conf import settings
-from .models import PostCategory
+from .models import Post
 
-def send_notifications(preview, pk, title, subscribes):
+def send_notifications(author, pk, title, subscribes):
     html_content = render_to_string(
         'post_created_email.html',
         {
-            'text': preview,
+            'text': author,
             'link': f'{settings.SITE_URL}/news/{pk}'
         }
     )
@@ -23,16 +23,14 @@ def send_notifications(preview, pk, title, subscribes):
     )
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
-
-
-@receiver(m2m_changed, sender=PostCategory)
-def notify_about_new_post(sender, instans, **kwargs):
+@receiver(m2m_changed, sender=Post.categories.through)
+def notify_about_new_post(sender, instance, **kwargs):
     if kwargs['action'] == 'post_add':
-        categories = instans.category.all()
+        categories = instance.categories.all()
         subscribers_emails = []
 
         for cat in categories:
             subscribers = cat.subscribers.all()
             subscribers_emails += [s.email for s in subscribers]
 
-        send_notifications(instans.preview(), instans.pk, instans.title, subscribers_emails)
+        send_notifications(instance.author(), instance.pk, instance.title, subscribers_emails)

@@ -27,7 +27,7 @@ news
                <td>Дата публикации</td>
                <td>Текст</td>
                <td>Тип поста</td>
-               <td>ID поста</td>
+               <td>ID поста (изменить/удалить пост)</td>
                <td>Автор</td>
            </tr>
 
@@ -54,7 +54,10 @@ news
                <td>{{ new.date_create|date:'d M Y, H m'|censor}}&emsp;</td>
                <td>{{ new.content|truncatechars:20|censor }}&emsp;</td>
                <td>{{ new.post_type }}&emsp;</td>
-               <td>{{ new.id }}&emsp;</td>
+               <td>
+                   <a href="{% url 'news_edit' new.id  %}">{{new.id}}</a>
+
+               </td>
                <td>{{ new.author }}&emsp;</td>
 
 
