@@ -227,4 +227,8 @@ def subscribe(request, pk):
     message = 'Вы успешно подписались на рассылку новостей категории'
     return  render(request, 'flatpages/subscribe.html', {'category': category, 'message': message})
 
+class CategoryName(ListView):
+    model = Category
+    template_name = 'flatpages/category_name.html'
+    context_object_name = 'category_name'
 

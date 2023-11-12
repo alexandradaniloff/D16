@@ -27,7 +27,7 @@ news
                <td>Дата публикации</td>
                <td>Текст</td>
                <td>Тип поста</td>
-               <td>ID поста (изменить/удалить пост)</td>
+               <td>ID поста </td>
                <td>Автор</td>
            </tr>
 
@@ -48,14 +48,14 @@ news
                <td>
                    {% for category in new.categories.all %}
                        <a href="{% url 'category_list' category.id %}">{{category}}</a>
-                       {% endfor %}
+                   {% endfor %}
                </td>
 
                <td>{{ new.date_create|date:'d M Y, H m'|censor}}&emsp;</td>
                <td>{{ new.content|truncatechars:20|censor }}&emsp;</td>
                <td>{{ new.post_type }}&emsp;</td>
                <td>
-                   <a href="{% url 'news_edit' new.id  %}">{{new.id}}</a>
+                   <a href="{% url 'news_detail' new.id  %}">{{new.id}}</a>
 
                </td>
                <td>{{ new.author }}&emsp;</td>
@@ -74,6 +74,7 @@ news
 
 
     <button> <a href="{% url 'news_create' %}"> Создать новость/статью </a> </button>
+    <button> <a href="{% url 'category_name' %}"> Категории </a></button>
 
 
     <button> <a href="/"> Выйти </a></button>

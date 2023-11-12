@@ -18,7 +18,7 @@ def send_notifications(author, pk, title, subscribes):
     msg = EmailMultiAlternatives(
         subject = title,
         body = '',
-        from_email = 'alexandradaniloff@gmail.com',
+        from_email = 'alexandradaniloff@mail.ru',
         to = subscribes,
     )
     msg.attach_alternative(html_content, 'text/html')

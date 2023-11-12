@@ -49,7 +49,7 @@ news
                <td>
                    {% for category in new.categories.all %}
                        <a href="{% url 'category_list' category.id %}">{{category}}</a>
-                       {% endfor %}
+                   {% endfor %}
                </td>
                <td>{{ new.date_create|date:'d M Y, H m'|censor}}&emsp;</td>
                <td>{{ new.content|truncatechars:20|censor }}&emsp;</td>
@@ -62,11 +62,15 @@ news
            {% endfor %}
 
        </table>
+
     {% else %}
        <!-- Если новостей нет, говорим, что новостей нет ;) -->
        <h2>Новостей нет!</h2>
 
     {% endif %}
+
+    <button> <a href="/news/"> Главная </a></button>
+
     {% if page_obj.has_previous %}
        {# Для каждой ссылки пагинации указываем обработку через новый тег #}
        <a href="?{% url_replace page=1 %}">1</a>

@@ -15,8 +15,12 @@ news
        <table>
            <tr>
                <td>Заголовок</td>
+               <td>Категории</td>
+               <td>Дата публикации</td>
                <td>Текст</td>
-               <td>Дата загрузки</td>
+               <td>Тип поста</td>
+               <td>ID поста </td>
+               <td>Автор</td>
            </tr>
 
            <!-- Для каждого товара будете генерироваться новая строчка,
@@ -24,20 +28,38 @@ news
            При этом сам цикл работает точно так же, как и в Python.
            product — переменная цикла, т.е. наш товар полученный из списка -->
 
+
            <tr>
                <!-- Не забываем, что переменные в шаблоне ничем не отличаются
                 от переменных в Python. Здесь также можно получать доступ к
                 полям объекта модели. Например, здесь мы выводим имя,
                 в следующем столбце описание, и т.д.  -->
+
+
                <td>{{ news_id.title|censor }}&emsp;</td>
-               <td>{{ news_id.content|censor }}&emsp;</td>
-               <td>{{ news_id.date_create|date:'d M Y '|censor }}</td>
+
+               <td>
+                   {% for category in news_id.categories.all %}
+                       <a href="{% url 'category_list' category.id %}">{{category}}</a>
+                   {% endfor %}
+               </td>
+
+               <td>{{ news_id.date_create|date:'d M Y, H m'|censor}}&emsp;</td>
+               <td>{{ news_id.content }}&emsp;</td>
+               <td>{{ news_id.post_type }}&emsp;</td>
+               <td>{{news_id.id}}</td>
+               <td>{{ news_id.author }}&emsp;</td>
+
 
            </tr>
+
        </table>
     {% else %}
        <!-- Если товаров нет, говорим, что товаров нет ;) -->
        <h2>Новостей нет!</h2>
     {% endif %}
+<button> <a href="{% url 'news_edit' news_id.id %}"> Изменить новость/статью </a> </button>
+<button> <a href="{% url 'news_delete' news_id.id %}"> Удалить новость/статью </a> </button>
+<button> <a href="/news/"> Главная </a></button>
 
 {% endblock content %}
