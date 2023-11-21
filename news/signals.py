@@ -6,12 +6,12 @@ from django.core.mail import EmailMultiAlternatives
 
 from django.conf import settings
 from .models import Post
-
-def send_notifications(author, pk, title, subscribes):
+from django.contrib.auth.models import User
+def send_notifications(pk, title, content, subscribes):
     html_content = render_to_string(
         'post_created_email.html',
         {
-            'text': author,
+            'text': content[0:50],
             'link': f'{settings.SITE_URL}/news/{pk}'
         }
     )
@@ -33,4 +33,4 @@ def notify_about_new_post(sender, instance, **kwargs):
             subscribers = cat.subscribers.all()
             subscribers_emails += [s.email for s in subscribers]
 
-        send_notifications(instance.author, instance.pk, instance.title, subscribers_emails)
+        send_notifications( instance.pk, instance.title, instance.content, subscribers_emails)

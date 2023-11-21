@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+
 from datetime import datetime
 
 # Create your views here.
@@ -226,6 +227,16 @@ def subscribe(request, pk):
 
     message = 'Вы успешно подписались на рассылку новостей категории'
     return  render(request, 'flatpages/subscribe.html', {'category': category, 'message': message})
+
+@login_required
+def unsubscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.remove(user)
+
+    message = 'Вы успешно отменили подписку на рассылку новостей категории'
+    return  render(request, 'flatpages/unsubscribe.html', {'category': category, 'message': message})
+
 
 class CategoryName(ListView):
     model = Category

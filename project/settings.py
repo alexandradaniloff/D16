@@ -22,7 +22,12 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# подтверждение регистрации по почте
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# подтверждение регистрации через консоль
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
 
@@ -33,6 +38,7 @@ EMAIL_HOST_PASSWORD = 'JgLb0dkazfpUK7fJ6kL9'  # пароль от почты
 EMAIL_USE_SSL = False  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'alexandradaniloff@mail.ru'
+
 
 # Application definition
 
@@ -57,7 +63,16 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
+
+
+    'django_apscheduler',
 ]
+
+# формат даты, которую будет воспринимать наш задачник (вспоминаем модуль по фильтрам)
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+# если задача не выполняется за 25 секунд, то она автоматически снимается, можете поставить время побольше, но как правило, это сильно бьёт по производительности сервера
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+
 
 SITE_ID = 2
 SITE_URL = 'http://127.0.0.1:8000/'

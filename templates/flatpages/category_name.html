@@ -19,7 +19,8 @@ news
        <table>
            <tr>
 
-               <td></td>
+               <td> Категории</td>
+               <td>Ваши подписки</td>
 
            </tr>
 
@@ -36,6 +37,13 @@ news
 
                <td>&emsp;
                     <a href="{% url 'category_list' cat.id  %}">{{ cat.name }}</a>
+               </td>
+               <td>
+                   {% if request.user in cat.subscribers.all %}
+                   <a href="{% url 'unsubscribe' cat.id  %}">отменить подписку</a>
+                   {% else %}
+                   <a href="{% url 'subscribe' cat.id  %}">подписаться</a>
+                   {% endif %}
                </td>
 
            </tr>
