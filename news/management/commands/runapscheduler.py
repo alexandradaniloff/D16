@@ -13,9 +13,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 
 from django.conf import settings
-from .models import (
-    Post, Category,
-                    )
+from news.models import Post, Category
 
 logger = logging.getLogger(__name__)
 
@@ -66,7 +64,7 @@ class Command(BaseCommand):
         # добавляем работу нашему задачнику
         scheduler.add_job(
             my_job,
-            trigger=CronTrigger(second="*/10"),
+            trigger=CronTrigger(day_of_week="wed", hour="19", minute="08"),
             # То же, что и интервал, но задача тригера таким образом более понятна django
             id="my_job",  # уникальный айди
             max_instances=1,
@@ -77,7 +75,7 @@ class Command(BaseCommand):
         scheduler.add_job(
             delete_old_job_executions,
             trigger=CronTrigger(
-                day_of_week="tue", hour="22", minute="31"
+                day_of_week="mon", hour="00", minute="00"
 
 
             ),
