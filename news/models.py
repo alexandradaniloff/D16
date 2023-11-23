@@ -44,8 +44,8 @@ class Post(models.Model):
         return f'{self.title}: {self.date_create.strftime("%d-%m-%Y, %H:%M:%S")}: {self.content[:20]}'
 
     def get_absolute_url(self):
-
         return reverse('news')
+        #return f'news/{self.id}'
 
 
 
