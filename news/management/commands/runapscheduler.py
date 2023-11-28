@@ -3,6 +3,7 @@ import logging
 from datetime import datetime
 from datetime import timedelta
 
+
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 from django.core.management.base import BaseCommand
@@ -65,8 +66,9 @@ class Command(BaseCommand):
         scheduler.add_job(
             my_job,
             #trigger=CronTrigger(second="*/30"),
+            trigger=CronTrigger(day_of_week="tue", hour="13", minute="59", timezone='UTC'),
             # Время пояса (03:23) отличается в меньшую сторону на 3 часа (факт 06:23)
-            trigger=CronTrigger(day_of_week="Mon", hour="03", minute="44"),
+            #trigger=CronTrigger(day_of_week="Mon", hour="04", minute="06"),
             # То же, что и интервал, но задача тригера таким образом более понятна django
             id="my_job",  # уникальный айди
             max_instances=1,
