@@ -15,9 +15,11 @@ from django.shortcuts import get_object_or_404
 
 from .filters import PostFilter
 from .forms import PostForm
+from .tasks import send_email_task, weekly_send_email_task
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import TemplateView
+
 
 
 
@@ -135,6 +137,7 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     def form_valid(self, form):
         Post = form.save(commit=False)
         Post.post_type = 'NE'
+        send_email_task.delay(Post.pk)
         return super().form_valid(form)
 
 class NewsUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
