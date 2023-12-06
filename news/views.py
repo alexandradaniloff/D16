@@ -135,9 +135,10 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
 
     def form_valid(self, form):
-        Post = form.save(commit=False)
-        Post.post_type = 'NE'
-        send_email_task.delay(Post.pk)
+        post = form.save(commit=False)
+        #post.post_type = 'NE'
+        post.save()
+        send_email_task.delay(post.pk)
         return super().form_valid(form)
 
 class NewsUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
