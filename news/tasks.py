@@ -5,6 +5,8 @@ from django.template.loader import render_to_string
 from .models import Post, Category
 import datetime
 
+
+
 @shared_task
 def send_email_task(pk):
     post = Post.objects.get(pk=pk)
@@ -36,7 +38,7 @@ def send_email_task(pk):
 @shared_task
 def weekly_send_email_task():
     today = datetime.now()
-    last_week = today - timedelta(days=7)
+    last_week = today - datetime.timedelta(days=7)
     posts = Post.objects.filter(date_create__gte=last_week)
 
     categories = set(posts.values_list('categories__name', flat=True))
