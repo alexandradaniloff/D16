@@ -22,13 +22,6 @@ from django.views.generic import TemplateView
 
 
 
-
-
-
-
-
-
-
 class NewsList(LoginRequiredMixin, ListView):
     # Указываем модель, объекты которой мы будем выводить
     model = Post
@@ -136,7 +129,7 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        #post.post_type = 'NE'
+        post.post_type = 'NE'
         post.save()
         send_email_task.delay(post.pk)
         return super().form_valid(form)
@@ -150,7 +143,7 @@ class NewsUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 
     def get_queryset(self):
-        return super().get_queryset().filter(post_type = 'NE')
+        return super().get_queryset().filter(post_type='NE')
 
 
 
