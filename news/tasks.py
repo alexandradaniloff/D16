@@ -7,6 +7,7 @@ import datetime
 
 
 
+
 @shared_task
 def send_email_task(pk):
     post = Post.objects.get(pk=pk)
@@ -37,7 +38,7 @@ def send_email_task(pk):
 
 @shared_task
 def weekly_send_email_task():
-    today = datetime.now()
+    today = datetime.datetime.now()
     last_week = today - datetime.timedelta(days=7)
     posts = Post.objects.filter(date_create__gte=last_week)
 
