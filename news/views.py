@@ -129,7 +129,7 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        post.post_type = 'NE'
+        #post.post_type = 'NE'
         post.save()
         send_email_task.delay(post.pk)
         return super().form_valid(form)
@@ -142,8 +142,8 @@ class NewsUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'flatpages/news_edit.html'
 
 
-    def get_queryset(self):
-        return super().get_queryset().filter(post_type='NE')
+    #def get_queryset(self):
+       # return super().get_queryset().filter(post_type='NE')
 
 
 
@@ -154,8 +154,8 @@ class NewsDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     template_name = 'flatpages/news_delete.html'
     success_url = reverse_lazy('news')
 
-    def get_queryset(self):
-        return super().get_queryset().filter(post_type = 'NE')
+    #def get_queryset(self):
+        #return super().get_queryset().filter(post_type = 'NE')
 
 
 
