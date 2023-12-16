@@ -15,8 +15,8 @@ app.conf.beat_schedule = {
         'task': 'news.tasks.weekly_send_email_task',
         #'schedule': crontab(),
         #срабатывание 1 раз в минуту
-        #'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
-        'schedule': crontab(hour=11, minute=50, day_of_week='saturday'),
+        'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
+        #'schedule': crontab(hour=8, minute=0, day_of_week='saturday'),
         'args':()
     }
 }
