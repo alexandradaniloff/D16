@@ -9,9 +9,9 @@ class CategoryInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
     inlines = (CategoryInline, )
     # list_display — это список или кортеж со всеми полями, которые вы хотите видеть в таблице с товарами
-    list_display = ('date_create', 'title', 'content', 'post_type', 'categories')
+    list_display = ('date_create', 'title', 'content', 'post_type')
     list_filter = ('date_create', 'title', 'content', 'post_type')
-    search_fields = ('date_create', 'title', 'content', 'post_type')
+    #search_fields = ('date_create', 'title', 'content', 'post_type')
 
 admin.site.register(Post, PostAdmin, )
 admin.site.register(PostCategory,)
