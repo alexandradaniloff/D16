@@ -189,3 +189,125 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+
+import logging
+logger = logging.getLogger('django')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console_debug': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'formatter_debug',
+            #'filters': ['debug_filter'],
+        },
+        'console_warning': {
+            'level': 'WARNING',
+            'class': 'logging.StreamHandler',
+            'formatter': 'formatter_warning',
+            #'filters': ['warning_filter'],
+        },
+        'console_error': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+            'formatter': 'formatter_error',
+            #'filters': ['error_filter'],
+        },
+        'general_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+            'formatter': 'formatter_info',
+        },
+        'error_file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'errors.log',
+            'formatter': 'formatter_warning',
+        },
+        'security_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'security.log',
+            'formatter': 'formatter_info',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': False,
+            'formatter': 'formatter_warning',
+            #'filters': ['request_filter'],
+        },
+    },
+
+    'formatters': {
+        'formatter_debug': {
+            'format': '{asctime}  {levelname}  {message}\n',
+            'style': '{',
+        },
+        'formatter_warning': {
+            'format': '{asctime}  {levelname}  {message}  {pathname}\n',
+            'style': '{',
+        },
+        'formatter_error': {
+            'format': '{asctime}  {levelname}  {message}  {pathname}  {exc_info}\n',
+            'style': '{',
+        },
+        'formatter_info': {
+            'format': '{asctime}  {levelname}  {module}  {message}\n',
+            'style': '{',
+        },
+
+    },
+
+    'filters': {
+        'debug_filter': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: record.levelno == logging.DEBUG,
+        },
+        'warning_filter': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: record.levelno == logging.WARNING,
+        },
+        'error_filter': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: record.levelno == logging.ERROR,
+        },
+    },
+
+    'loggers': {
+        'django': {
+            'handlers': ['console_debug', 'console_warning', 'console_error', 'general_file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['error_file', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['error_file', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.template': {
+            'handlers': ['error_file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['error_file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.security': {
+            'handlers': ['security_file'],
+            'level': 'INFO',
+            'propagate': False,
+        }
+    }
+}

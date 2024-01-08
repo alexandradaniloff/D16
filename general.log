@@ -1,0 +1,66 @@
+2024-01-03 11:58:35,064  INFO  Watching for file changes with StatReloader
+
+2024-01-03 11:58:49,570  INFO  "GET / HTTP/1.1" 200 564
+
+2024-01-03 11:58:57,407  ERROR  Internal Server Error: /news/
+Traceback (most recent call last):
+  File "C:\python3.11\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\python3.11\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\python3.11\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\python3.11\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\python3.11\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\python3.11\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: news/post_list.html
+2024-01-03 11:58:57,412  ERROR  "GET /news/ HTTP/1.1" 500 83283
+
+2024-01-03 11:59:28,092  INFO  C:\Users\PC\PycharmProjects\D16\project\news\views.py changed, reloading.
+
+2024-01-03 11:59:29,238  INFO  Watching for file changes with StatReloader
+
+2024-01-03 11:59:36,790  INFO  "GET / HTTP/1.1" 200 564
+
+2024-01-03 11:59:46,943  INFO  "GET /news/ HTTP/1.1" 200 12964
+
+2024-01-03 11:59:49,755  INFO  "GET /categories/ HTTP/1.1" 200 3922
+
+2024-01-03 11:59:52,030  INFO  "GET /news/ HTTP/1.1" 200 12964
+
+2024-01-03 12:10:42,492  INFO  "GET /news/create/ HTTP/1.1" 200 1546
+
+2024-01-03 12:10:48,139  INFO  "POST /news/create/ HTTP/1.1" 302 0
+
+2024-01-03 12:10:48,171  INFO  "GET /news/ HTTP/1.1" 200 12825
+
+2024-01-03 23:17:25,311  INFO  C:\Users\PC\PycharmProjects\D16\project\project\settings.py changed, reloading.
+
+2024-01-03 23:17:27,180  INFO  autoreload  Watching for file changes with StatReloader
+
+2024-01-03 23:21:11,969  INFO  basehttp  "GET /news/create/ HTTP/1.1" 200 1546
+
+2024-01-03 23:21:16,657  INFO  basehttp  "GET /news/ HTTP/1.1" 200 12825
+
+2024-01-03 23:43:29,183  INFO  autoreload  C:\Users\PC\PycharmProjects\D16\project\project\settings.py changed, reloading.
+
+2024-01-08 19:27:49,902  INFO  autoreload  Watching for file changes with StatReloader
+
+2024-01-08 19:37:36,062  INFO  autoreload  C:\Users\PC\PycharmProjects\D16\project\project\settings.py changed, reloading.
+
+2024-01-08 19:37:37,638  INFO  autoreload  Watching for file changes with StatReloader
+
+2024-01-08 19:37:58,844  INFO  autoreload  Watching for file changes with StatReloader
+
+2024-01-08 19:44:45,983  INFO  autoreload  C:\Users\PC\PycharmProjects\D16\project\news\views.py changed, reloading.
+
+2024-01-08 19:44:47,279  INFO  autoreload  Watching for file changes with StatReloader
+
