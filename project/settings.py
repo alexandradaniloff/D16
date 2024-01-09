@@ -31,6 +31,9 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
 
+ADMINS = (
+    ('admin', 'alexandradaniloff@mail.ru'),
+)
 EMAIL_HOST = 'smtp.mail.ru'  # адрес сервера Яндекс-почты для всех один и тот же
 EMAIL_PORT = 2525  # порт smtp сервера тоже одинаковый
 EMAIL_HOST_USER = 'alexandradaniloff'  # ваше имя пользователя, например, если ваша почта user@yandex.ru, то сюда надо писать user, иными словами, это всё то что идёт до собаки
@@ -38,6 +41,8 @@ EMAIL_HOST_PASSWORD = '1CETJHvfMVRcQiqFLnDZ'  # пароль от почты
 EMAIL_USE_SSL = False  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'alexandradaniloff@mail.ru'
+EMAIL_ADMIN = 'alexandradaniloff@mail.ru'
+SERVER_EMAIL = 'alexandradaniloff@mail.ru'
 
 
 # Application definition

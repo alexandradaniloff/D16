@@ -64,3 +64,21 @@ django.template.exceptions.TemplateDoesNotExist: news/post_list.html
 
 2024-01-08 19:44:47,279  INFO  autoreload  Watching for file changes with StatReloader
 
+2024-01-09 16:28:16,792  INFO  autoreload  C:\Users\PC\PycharmProjects\D16\project\project\settings.py changed, reloading.
+
+2024-01-09 16:30:45,078  INFO  autoreload  Watching for file changes with StatReloader
+
+2024-01-09 16:32:32,244  INFO  autoreload  C:\Users\PC\PycharmProjects\D16\project\project\settings.py changed, reloading.
+
+2024-01-09 16:32:33,734  INFO  autoreload  Watching for file changes with StatReloader
+
+2024-01-09 16:42:03,060  INFO  autoreload  C:\Users\PC\PycharmProjects\D16\project\project\settings.py changed, reloading.
+
+2024-01-09 16:42:04,419  INFO  autoreload  Watching for file changes with StatReloader
+
+2024-01-09 16:44:07,739  INFO  autoreload  C:\Users\PC\PycharmProjects\D16\project\project\settings.py changed, reloading.
+
+2024-01-09 16:44:08,973  INFO  autoreload  Watching for file changes with StatReloader
+
+2024-01-09 16:44:32,391  INFO  autoreload  Watching for file changes with StatReloader
+
