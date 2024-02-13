@@ -197,7 +197,9 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 
 DEBUG = False
+#DEBUG = True
 import logging
+
 logger = logging.getLogger('django')
 
 LOGGING = {
@@ -233,7 +235,7 @@ LOGGING = {
         },
 
         'error_file': {
-            'level': 'INFO',
+            'level': 'ERROR',
             'class': 'logging.FileHandler',
             'filename': 'errors.log',
             'formatter': 'formatter_error',
@@ -285,9 +287,9 @@ LOGGING = {
 
     'loggers': {
          'django': {
-             'handlers': ['console_debug', 'console_warning', 'console_error', 'general_file' ],
-             'level': 'DEBUG',
-             'propagate': True,
+              'handlers': ['console_debug', 'console_warning', 'console_error', 'general_file'],
+              'level': 'DEBUG',
+              'propagate': True,
          },
          'django.request': {
              'handlers': ['error_file', 'mail_admins'],
